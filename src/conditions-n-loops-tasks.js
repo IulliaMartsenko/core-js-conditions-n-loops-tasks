@@ -71,8 +71,14 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  const diffX = Math.abs(queen.x - king.x);
+  const diffY = Math.abs(queen.y - king.y);
+
+  if (queen.x === king.x || queen.y === king.y || diffX === diffY) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -221,8 +227,50 @@ function convertToRomanNumerals(num) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let res = '';
+  function symbolToString(symbol) {
+    switch (symbol) {
+      case '0':
+        return 'zero';
+      case '1':
+        return 'one';
+      case '2':
+        return 'two';
+      case '3':
+        return 'three';
+      case '4':
+        return 'four';
+      case '5':
+        return 'five';
+      case '6':
+        return 'six';
+      case '7':
+        return 'seven';
+      case '8':
+        return 'eight';
+      case '9':
+        return 'nine';
+      case '-':
+        return 'minus';
+      case '.':
+        return 'point';
+      case ',':
+        return 'point';
+      default:
+        return '';
+    }
+  }
+
+  for (let index = 0; index < numberStr.length; index += 1) {
+    const element = numberStr[index];
+    res += symbolToString(element);
+
+    if (index !== numberStr.length - 1) {
+      res += ' ';
+    }
+  }
+  return res;
 }
 
 /**
@@ -372,8 +420,18 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const res = arr;
+  for (let j = 1; j < res.length - 1; j += 1) {
+    for (let i = 0; i < res.length - j; i += 1) {
+      if (res[i] > res[i + 1]) {
+        const arrTwo = res[i];
+        res[i] = res[i + 1];
+        res[i + 1] = arrTwo;
+      }
+    }
+  }
+  return res;
 }
 
 /**
